@@ -1,0 +1,24 @@
+{
+  "name": "eslint-plugin-springworks",
+  "version": "0.0.0",
+  "description": "Collection of ESLint rules",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "requireindex": "~1.1.0"
+  },
+  "devDependencies": {
+    "eslint": "~1.2.0"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "license": "MIT"
+}
