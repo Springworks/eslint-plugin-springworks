@@ -1,36 +1,26 @@
 # Convert var to let (fixable-no-var)
 
-Please describe the origin of the rule here.
+Same as the built-in [`no-var`](http://eslint.org/docs/rules/no-var) rule but can also "fix" the code by replacing `var` with `let`.
 
 
 ## Rule Details
 
-This rule aims to...
-
-The following patterns are considered warnings:
+When run with the `--fix` flag it will transform the following code
 
 ```js
+var x = 1,
+    y = 2,
+    z;
 
-// fill me in
-
+var foo = 'bar';
 ```
 
-The following patterns are not warnings:
+into:
 
 ```js
+let x = 1,
+    y = 2,
+    z;
 
-// fill me in
-
+let foo = 'bar';
 ```
-
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
-
-## When Not To Use It
-
-Give a short description of when it would be appropriate to turn off this rule.
-
-## Further Reading
-
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.

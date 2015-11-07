@@ -1,39 +1,60 @@
-/**
- * @fileoverview Convert var to let
- * @author Springworks
- * @copyright 2015 Springworks. All rights reserved.
- * See LICENSE file in root directory for full license.
- */
 "use strict";
 
-//------------------------------------------------------------------------------
-// Requirements
-//------------------------------------------------------------------------------
+var rule = require("../../../lib/rules/fixable-no-var");
+var RuleTester = require("eslint").RuleTester;
 
-var rule = require("../../../lib/rules/fixable-no-var"),
-
-    RuleTester = require("eslint").RuleTester;
-
-
-//------------------------------------------------------------------------------
-// Tests
-//------------------------------------------------------------------------------
 
 var ruleTester = new RuleTester();
 ruleTester.run("fixable-no-var", rule, {
 
-    valid: [
+  valid: [
+    {
+      code: "let x = 1;",
+      ecmaFeatures: { blockBindings: true }
+    },
+    {
+      code: "const x = 1;",
+      ecmaFeatures: { blockBindings: true }
+    },
+  ],
 
-        // give me some code that won't trigger a warning
-    ],
-
-    invalid: [
-        {
-            code: "var x = 1;",
-            errors: [{
-                message: "Fill me in.",
-                type: "Me too"
-            }]
-        }
-    ]
+  invalid: [
+    {
+      code: "var x = 1;",
+      output: "let x = 1;",
+      errors: [expectedError()],
+    },
+    {
+      code: "var x = 1, y = 2;",
+      output: "let x = 1, y = 2;",
+      errors: [expectedError()],
+    },
+    {
+      code: "var x = 1, y = 2;",
+      output: "let x = 1, y = 2;",
+      errors: [expectedError()],
+    },
+    {
+      code: "var x;",
+      output: "let x;",
+      errors: [expectedError()],
+    },
+    {
+      code: "var x = 1, y;",
+      output: "let x = 1, y;",
+      errors: [expectedError()],
+    },
+    {
+      code: "var x = 1; var y = 2;",
+      output: "let x = 1; let y = 2;",
+      errors: [expectedError(), expectedError()],
+    },
+  ],
 });
+
+function expectedError() {
+  return {
+    message: "VariableDeclaration var can be replaced with let.",
+    type: "VariableDeclaration"
+  };
+}
