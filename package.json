@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-springworks",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Collection of ESLint rules",
   "main": "lib/index.js",
   "scripts": {
