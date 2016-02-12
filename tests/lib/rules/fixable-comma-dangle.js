@@ -22,8 +22,8 @@ ruleTester.run("fixable-comma-dangle", rule, {
     { code: "var foo = { bar: 'baz' }", options: ["never"] },
     { code: "var foo = {\nbar: 'baz'\n}", options: ["never"] },
     { code: "var foo = [ 'baz' ]", options: ["never"] },
-    { code: "var { a, b } = foo;", options: ["never"], ecmaFeatures: { destructuring: true } },
-    { code: "var [ a, b ] = foo;", options: ["never"], ecmaFeatures: { destructuring: true } },
+    { code: "var { a, b } = foo;", options: ["never"], parserOptions: { ecmaVersion: 6 } },
+    { code: "var [ a, b ] = foo;", options: ["never"], parserOptions: { ecmaVersion: 6 } },
 
     { code: "[(1),]", options: ["always"] },
     { code: "var x = { foo: (1),};", options: ["always"] },
@@ -59,104 +59,104 @@ ruleTester.run("fixable-comma-dangle", rule, {
     // https://github.com/eslint/eslint/issues/3627
     {
       code: "var [a, ...rest] = [];",
-      ecmaFeatures: { destructuring: true, spread: true },
+      parserOptions: { ecmaVersion: 6 },
       options: ["always"]
     },
     {
       code: "var [\n    a,\n    ...rest\n] = [];",
-      ecmaFeatures: { destructuring: true, spread: true },
+      parserOptions: { ecmaVersion: 6 },
       options: ["always"]
     },
     {
       code: "var [\n    a,\n    ...rest\n] = [];",
-      ecmaFeatures: { destructuring: true, spread: true },
+      parserOptions: { ecmaVersion: 6 },
       options: ["always-multiline"]
     },
     {
       code: "[a, ...rest] = [];",
-      ecmaFeatures: { destructuring: true, spread: true },
+      parserOptions: { ecmaVersion: 6 },
       options: ["always"]
     },
     {
       code: "for ([a, ...rest] of []);",
-      ecmaFeatures: { destructuring: true, spread: true, forOf: true },
+      parserOptions: { ecmaVersion: 6 },
       options: ["always"]
     },
     {
       code: "var a = [b, ...spread,];",
-      ecmaFeatures: { spread: true },
+      parserOptions: { ecmaVersion: 6 },
       options: ["always"]
     },
 
     // https://github.com/eslint/eslint/issues/3794
     {
       code: "import {foo,} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always"]
     },
     {
       code: "import foo from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always"]
     },
     {
       code: "import foo, {abc,} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always"]
     },
     {
       code: "import * as foo from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always"]
     },
     {
       code: "export {foo,} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always"]
     },
     {
       code: "import {foo} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["never"]
     },
     {
       code: "import foo from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["never"]
     },
     {
       code: "import foo, {abc} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["never"]
     },
     {
       code: "import * as foo from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["never"]
     },
     {
       code: "export {foo} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["never"]
     },
     {
       code: "import {foo} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always-multiline"]
     },
     {
       code: "export {foo} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always-multiline"]
     },
     {
       code: "import {\n  foo,\n} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always-multiline"]
     },
     {
       code: "export {\n  foo,\n} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always-multiline"]
     }
   ],
@@ -500,7 +500,7 @@ ruleTester.run("fixable-comma-dangle", rule, {
       code: "var { a, b, } = foo;",
       output: "var { a, b } = foo;",
       options: ["never"],
-      ecmaFeatures: { destructuring: true },
+      parserOptions: { ecmaVersion: 6 },
       errors: [
         {
           message: "Unexpected trailing comma.",
@@ -514,7 +514,7 @@ ruleTester.run("fixable-comma-dangle", rule, {
       code: "var [ a, b, ] = foo;",
       output: "var [ a, b ] = foo;",
       options: ["never"],
-      ecmaFeatures: { destructuring: true },
+      parserOptions: { ecmaVersion: 6 },
       errors: [
         {
           message: "Unexpected trailing comma.",
@@ -555,70 +555,70 @@ ruleTester.run("fixable-comma-dangle", rule, {
     {
       code: "import {foo} from 'foo';",
       output: "import {foo,} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always"],
       errors: [{ message: "Missing trailing comma.", type: "ImportSpecifier" }]
     },
     {
       code: "import foo, {abc} from 'foo';",
       output: "import foo, {abc,} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always"],
       errors: [{ message: "Missing trailing comma.", type: "ImportSpecifier" }]
     },
     {
       code: "export {foo} from 'foo';",
       output: "export {foo,} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always"],
       errors: [{ message: "Missing trailing comma.", type: "ExportSpecifier" }]
     },
     {
       code: "import {foo,} from 'foo';",
       output: "import {foo} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["never"],
       errors: [{ message: "Unexpected trailing comma.", type: "ImportSpecifier" }]
     },
     {
       code: "import foo, {abc,} from 'foo';",
       output: "import foo, {abc} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["never"],
       errors: [{ message: "Unexpected trailing comma.", type: "ImportSpecifier" }]
     },
     {
       code: "export {foo,} from 'foo';",
       output: "export {foo} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["never"],
       errors: [{ message: "Unexpected trailing comma.", type: "ExportSpecifier" }]
     },
     {
       code: "import {foo,} from 'foo';",
       output: "import {foo} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always-multiline"],
       errors: [{ message: "Unexpected trailing comma.", type: "ImportSpecifier" }]
     },
     {
       code: "export {foo,} from 'foo';",
       output: "export {foo} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always-multiline"],
       errors: [{ message: "Unexpected trailing comma.", type: "ExportSpecifier" }]
     },
     {
       code: "import {\n  foo\n} from 'foo';",
       output: "import {\n  foo,\n} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always-multiline"],
       errors: [{ message: "Missing trailing comma.", type: "ImportSpecifier" }]
     },
     {
       code: "export {\n  foo\n} from 'foo';",
       output: "export {\n  foo,\n} from 'foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       options: ["always-multiline"],
       errors: [{ message: "Missing trailing comma.", type: "ExportSpecifier" }]
     }

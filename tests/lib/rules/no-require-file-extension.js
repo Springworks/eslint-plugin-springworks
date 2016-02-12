@@ -8,18 +8,18 @@ var ruleTester = new RuleTester();
 ruleTester.run("no-require-file-extension", rule, {
 
   valid: [
-    { code: "const foo = require('./foo');", ecmaFeatures: { blockBindings: true } },
-    { code: "import foo from './foo';", ecmaFeatures: { modules: true } },
-    { code: "import * as foo from './foo';", ecmaFeatures: { modules: true } },
-    { code: "import { foo } from './foo';", ecmaFeatures: { modules: true } },
-    { code: "import { foo as bar } from './foo';", ecmaFeatures: { modules: true } },
+    { code: "const foo = require('./foo');", parserOptions: { ecmaVersion: 6 } },
+    { code: "import foo from './foo';", parserOptions: { sourceType: "module" } },
+    { code: "import * as foo from './foo';", parserOptions: { sourceType: "module" } },
+    { code: "import { foo } from './foo';", parserOptions: { sourceType: "module" } },
+    { code: "import { foo as bar } from './foo';", parserOptions: { sourceType: "module" } },
   ],
 
   invalid: [
     {
       code: "const foo = require('./foo.js');",
       output: "const foo = require('./foo');",
-      ecmaFeatures: { blockBindings: true },
+      parserOptions: { ecmaVersion: 6 },
       errors: [{
         message: "Do not include .js in relative paths",
         type: "Literal"
@@ -28,7 +28,7 @@ ruleTester.run("no-require-file-extension", rule, {
     {
       code: "import foo from './foo.js';",
       output: "import foo from './foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       errors: [{
         message: "Do not include .js in relative paths",
         type: "Literal"
@@ -37,7 +37,7 @@ ruleTester.run("no-require-file-extension", rule, {
     {
       code: "import * as foo from './foo.js';",
       output: "import * as foo from './foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       errors: [{
         message: "Do not include .js in relative paths",
         type: "Literal"
@@ -46,7 +46,7 @@ ruleTester.run("no-require-file-extension", rule, {
     {
       code: "import { foo } from './foo.js';",
       output: "import { foo } from './foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       errors: [{
         message: "Do not include .js in relative paths",
         type: "Literal"
@@ -55,7 +55,7 @@ ruleTester.run("no-require-file-extension", rule, {
     {
       code: "import { foo as bar } from './foo.js';",
       output: "import { foo as bar } from './foo';",
-      ecmaFeatures: { modules: true },
+      parserOptions: { sourceType: "module" },
       errors: [{
         message: "Do not include .js in relative paths",
         type: "Literal"
