@@ -10,11 +10,11 @@ ruleTester.run("fixable-no-var", rule, {
   valid: [
     {
       code: "let x = 1;",
-      ecmaFeatures: { blockBindings: true }
+      parserOptions: { ecmaVersion: 6 }
     },
     {
       code: "const x = 1;",
-      ecmaFeatures: { blockBindings: true }
+      parserOptions: { ecmaVersion: 6 }
     },
   ],
 
