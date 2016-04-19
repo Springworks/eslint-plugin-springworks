@@ -1,4 +1,4 @@
-# Ensure that the top `describe` call in each test file use the correct path (top-describe-path)
+# Ensure that the top `describe` or `context` call in each test file use the correct path (top-describe-path)
 
 We use `mocha` in many of our projects and have adopted the convention of using `__filename` as the description in the root `describe` in each test file. That way it's easy to find a failing test.
 It is easier and less error-prone to write `__filename` then the actual path.
