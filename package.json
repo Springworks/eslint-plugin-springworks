@@ -1,17 +1,18 @@
 {
   "name": "eslint-plugin-springworks",
-  "version": "2.0.0",
   "description": "Collection of ESLint rules",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha --recursive --reporter dot tests"
+    "test": "mocha --recursive --reporter dot tests",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "dependencies": {
     "requireindex": "~1.1.0"
   },
   "devDependencies": {
     "eslint": "^2.4.0",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "semantic-release": "^4.3.5"
   },
   "engines": {
     "node": ">=4"
@@ -25,7 +26,7 @@
   "author": "Springworks",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Springworks/eslint-plugin-springworks.git"
+    "url": "https://github.com/Springworks/eslint-plugin-springworks.git"
   },
   "bugs": {
     "url": "https://github.com/Springworks/eslint-plugin-springworks/issues"
