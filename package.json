@@ -4,7 +4,8 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha --recursive --reporter dot tests",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "commit": "commit-wizard"
   },
   "dependencies": {
     "requireindex": "~1.1.0"
@@ -12,7 +13,13 @@
   "devDependencies": {
     "eslint": "^2.4.0",
     "mocha": "^2.4.5",
+    "pre-git": "3.8.3",
     "semantic-release": "^4.3.5"
+  },
+  "config": {
+    "pre-git": {
+      "commit-msg": "conventional"
+    }
   },
   "engines": {
     "node": ">=4"
