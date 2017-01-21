@@ -1,5 +1,7 @@
 # eslint-plugin-springworks
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Springworks/eslint-plugin-springworks.svg)](https://greenkeeper.io/)
+
 Collection of ESLint rules
 
 ## Installation
