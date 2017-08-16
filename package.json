@@ -14,7 +14,7 @@
     "eslint": "^4.3.0",
     "mocha": "^3.0.2",
     "pre-git": "^3.11.1",
-    "semantic-release": "^6.3.2"
+    "semantic-release": "^7.0.1"
   },
   "config": {
     "pre-git": {
