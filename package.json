@@ -8,7 +8,7 @@
     "commit": "commit-wizard"
   },
   "dependencies": {
-    "requireindex": "~1.1.0"
+    "requireindex": "~1.2.0"
   },
   "devDependencies": {
     "eslint": "^4.3.0",
