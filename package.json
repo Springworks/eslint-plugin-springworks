@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "eslint": "^4.3.0",
-    "mocha": "^8.2.1",
+    "mocha": "^10.1.0",
     "pre-git": "^3.11.1"
   },
   "engines": {
